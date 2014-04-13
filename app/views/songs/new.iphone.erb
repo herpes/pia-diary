@@ -1,0 +1,39 @@
+<div data-role="header" data-position="inline">
+  <%= link_to 'TOP', '/', "data-icon" => "home" %>
+  <h1>曲登録</h1>
+  <%= link_to '作曲者追加', '#', "data-icon" => "plus" %>
+</div>
+
+<%= form_for(@song) do |f| %>
+  <% if @song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+      <% @song.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field", data-role="fieldcontain">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field", data-role="fieldcontain">
+    <%= f.label :composer %>
+    <%= f.collection_select(:id, @composers, :id, :name, :prompt => "選択してください") %>
+  </div>
+  <div class="field", data-role="fieldcontain" >
+    <%= f.label :opus %>
+    <%= f.text_field :opus %>
+  </div>
+  <div class="field", data-role="fieldcontain">
+    <%= f.label :key %>
+    <%= f.select :key, SongsController::KEYS %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

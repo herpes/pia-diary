@@ -1,0 +1,30 @@
+<%= form_for(@practice) do |f| %>
+  <% if @practice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
+
+      <ul>
+      <% @practice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :practice_begin  %><br />
+      <%= f.datetime_select :practice_begin, :use_month_numbers => true, :minute_step => 10 %>
+    </div>
+    <div class="field">
+      <%= f.label :practice_end  %><br />
+      <%= f.datetime_select :practice_end, :use_month_numbers => true, :minute_step => 10 %>
+    </div>
+    <div class="field">
+      <%= f.label :song  %><br />
+      <%= f.collection_select(:song_id, @songs, :id, :name, :prompt => "選択してください") %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>

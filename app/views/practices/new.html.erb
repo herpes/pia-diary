@@ -1,0 +1,65 @@
+<div data-role="header">
+  <%= link_to 'TOP', '/', "data-icon" => "home" %>
+  <h1>練習記録</h1>
+</div>
+
+<%= form_for(@practice) do |f| %>
+  <% if @practice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
+
+      <ul>
+      <% @practice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="field">
+      <div data-role="fieldcontain">
+      日付
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <%= f.date_select :practice_begin %>
+      <fieldset>
+      </div>
+    </div>
+
+    <div class="field">
+      <div data-role="fieldcontain">
+      <%= f.label :practice_begin  %>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+      <%= f.time_select :practice_begin, :use_month_numbers => true, :minute_step => 10, :time_separator => '' %>
+      <fieldset>
+      </div>
+    </div>
+
+    <div class="field">
+      <div data-role="fieldcontain">
+	<%= f.label :practice_end  %>
+	<fieldset data-role="controlgroup" data-type="horizontal">
+	  <%= f.time_select :practice_end, :use_month_numbers => true, :minute_step => 10, :time_separator => '' %>
+      </fieldset>
+      </div>
+    </div>
+    <div class="field">
+      <div data-role="fieldcontain">
+	<%= f.label :song  %>
+	<%= f.collection_select(:song_id, @songs, :id, :name, :prompt => "選択してください") %>
+      </div>
+    </div>
+
+    <%= f.fields_for :song_memo do |memo| %>
+    <div class="field">
+     <div data-role="fieldcontain">
+	<%= memo.label :memo %>
+	<%= memo.text_area :memo %>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
+<br />

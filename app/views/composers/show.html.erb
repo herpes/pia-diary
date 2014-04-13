@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @composer.name %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @composer.country %>
+</p>
+
+<%= link_to 'Edit', edit_composer_path(@composer) %> |
+<%= link_to 'Back', composers_path %>

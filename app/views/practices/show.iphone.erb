@@ -1,0 +1,9 @@
+<div data-role="header">
+  <h1><%= @practice.practice_begin.strftime("%Y-%m-%d") %>: <%= @practice.song.name %></h1>
+</div>
+
+曲名：<%= @practice.song.name %><br />
+練習時間：<%= @practice.practice_begin.strftime("%H:%M") %>〜<%= @practice.practice_end.strftime("%H:%M") %><br />
+メモ：<%= @practice.song.memo %><br />
+<%= button_to '削除', "/practices/#{@practice.id}", :method => :delete, 'data-role' => 'button', 'data-theme' => 'a' %>
+<%= link_to '一覧に戻る', practices_path %>

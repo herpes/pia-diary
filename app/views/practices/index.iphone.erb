@@ -1,0 +1,19 @@
+<div data-role="header">
+  <%= link_to 'TOP', '/', "data-icon" => "home" %>
+  <h1>練習一覧</h1>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<ul data-role="listview">
+  <% @practices.each do |day, practices| %>
+  <li data-role="list-divider"><%= day %><span class="ui-li-count"><%= practices.size %>曲</span></li>
+    <% practices.each do |practice| %>
+    <li>
+      <%= link_to practice.song.name, practice %>
+      <p class="ui-li-aside"><strong><%= practice.practice_begin.strftime("%H:%M") %>-<%= practice.practice_end.strftime("%H:%M") %></strong></p>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+<br>

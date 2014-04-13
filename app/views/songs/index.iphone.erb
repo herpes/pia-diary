@@ -1,0 +1,17 @@
+<div data-role="header">
+<h1>曲一覧</h1>
+</div>
+<ul data-role="listview">
+  <% @songs.each do |cmp, songs| %>
+  <li data-role="list-divider"><%= cmp %><span class="ui-li-count"><%= songs.size %></span></li>
+    <% songs.each do |song| %>
+    <li>
+      <%= link_to song.name, song %>
+      <p class="ui-li-aside"><strong>Op.<%= song.opus %></strong></p>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+<br>
+
+<%= link_to '戻る', '/' %>
